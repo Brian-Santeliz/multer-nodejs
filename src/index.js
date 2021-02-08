@@ -18,10 +18,9 @@ app.use(express.static(path.join(__dirname, "public")));
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "public/uploads"),
   filename: (req, file, callback) => {
-    callback(null, file.originalname);
+    callback(null, `${v4()}${path.extname(file.originalname)}`);
   },
 });
-
 /* Crear para todas las rutas, no recomendado */
 app.use(
   multer({
